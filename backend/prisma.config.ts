@@ -3,9 +3,9 @@ import { defineConfig } from '@prisma/config';
 
 export default defineConfig({
   datasource: {
-    url: process.env.DATABASE_URL!,  // <-- Gibutangan og !
+    url: process.env.DATABASE_URL!,
   },
   migrations: {
-    seed: 'ts-node --esm prisma/seed.ts',
+    seed: 'tsx prisma/seed.ts', // <-- Giusab gikan sa ts-node to tsx
   },
 });
