@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  techStack   String   // e.g., "Next.js, Express, PostgreSQL"
+  liveUrl     String?
+  repoUrl     String?
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+}
+
+model Skill {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  category String // e.g., "Frontend", "Backend", "DevOps"
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
