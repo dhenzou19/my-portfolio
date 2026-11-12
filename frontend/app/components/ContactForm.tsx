@@ -2,6 +2,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Send } from 'lucide-react';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -25,13 +26,10 @@ export default function ContactForm() {
       });
 
       const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || 'Something went wrong');
-      }
+      if (!res.ok) throw new Error(data.error || 'Something went wrong');
 
       setStatus('success');
-      setFormData({ name: '', email: '', message: '' }); // Clear form
+      setFormData({ name: '', email: '', message: '' }); 
     } catch (error: any) {
       setStatus('error');
       setErrorMessage(error.message);
@@ -39,66 +37,69 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-neutral-800 p-8 rounded-2xl border border-neutral-700 max-w-2xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center text-white">Get In Touch</h2>
-
+    <div className="bg-white/5 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-3xl max-w-3xl mx-auto shadow-2xl">
       {status === 'success' && (
-        <div className="bg-green-500/20 text-green-400 p-4 rounded-lg mb-6 text-center">
-          ✅ Message sent successfully! I'll get back to you soon.
+        <div className="bg-green-500/10 border border-green-500/20 text-green-400 p-4 rounded-xl mb-8 text-center flex items-center justify-center gap-2">
+          <span className="text-xl">✅</span> Message sent! I'll get back to you soon.
         </div>
       )}
 
       {status === 'error' && (
-        <div className="bg-red-500/20 text-red-400 p-4 rounded-lg mb-6 text-center">
+        <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-xl mb-8 text-center">
           ❌ {errorMessage}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">Name</label>
+            <label className="block text-sm font-medium text-neutral-400 mb-2">Your Name</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 transition"
+              className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all placeholder:text-neutral-600"
               placeholder="John Doe"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">Email</label>
+            <label className="block text-sm font-medium text-neutral-400 mb-2">Your Email</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 transition"
+              className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all placeholder:text-neutral-600"
               placeholder="john@example.com"
             />
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-400 mb-1">Message</label>
+          <label className="block text-sm font-medium text-neutral-400 mb-2">Message</label>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
             required
-            rows={4}
-            className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 transition resize-none"
+            rows={5}
+            className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all resize-none placeholder:text-neutral-600"
             placeholder="Hello, I'd like to talk about..."
           />
         </div>
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full bg-rose-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-rose-700 transition disabled:opacity-50"
+          className="w-full flex items-center justify-center gap-2 bg-white text-black font-bold py-4 rounded-xl hover:bg-neutral-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
         >
-          {status === 'loading' ? 'Sending...' : 'Send Message'}
+          {status === 'loading' ? 'Sending...' : (
+            <>
+              Send Message 
+              <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </>
+          )}
         </button>
       </form>
     </div>
