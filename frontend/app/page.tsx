@@ -39,7 +39,7 @@ export default function Home() {
           <div className="flex-1 flex justify-center md:justify-end relative w-full">
             <div className="absolute inset-0 bg-gradient-to-tr from-rose-600 to-purple-600 rounded-full blur-3xl opacity-20 transform scale-75 md:scale-100"></div>
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-neutral-800 overflow-hidden shadow-2xl">
-              <Image src="/pfp.png" alt="Dhenmarc Profile" fill className="object-cover" priority />
+              <Image src="/pogiko.jpg" alt="Dhenmarc Profile" fill className="object-cover" priority />
             </div>
           </div>
         </section>
@@ -87,7 +87,7 @@ export default function Home() {
                 <div className="p-3 bg-neutral-800 rounded-xl text-rose-500"><Mail size={20} /></div>
                 <div>
                   <p className="text-sm text-neutral-500">Email</p>
-                  <p className="font-medium text-white">your.email@gmail.com</p>
+                  <p className="font-medium text-white">dhenmarctagsip@gmail.com</p>
                 </div>
               </div>
             </div>

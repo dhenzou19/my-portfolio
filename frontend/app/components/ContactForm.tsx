@@ -61,7 +61,7 @@ export default function ContactForm() {
               onChange={handleChange}
               required
               className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all placeholder:text-neutral-600"
-              placeholder="John Doe"
+              placeholder="Your full Name"
             />
           </div>
           <div>
@@ -73,7 +73,7 @@ export default function ContactForm() {
               onChange={handleChange}
               required
               className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all placeholder:text-neutral-600"
-              placeholder="john@example.com"
+              placeholder="Your email adress"
             />
           </div>
         </div>
@@ -86,7 +86,7 @@ export default function ContactForm() {
             required
             rows={5}
             className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all resize-none placeholder:text-neutral-600"
-            placeholder="Hello, I'd like to talk about..."
+            placeholder="Write your message here..."
           />
         </div>
         <button

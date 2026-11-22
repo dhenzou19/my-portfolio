@@ -24,7 +24,7 @@ const prisma = new PrismaClient({ adapter });
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://your-vercel-app.vercel.app'],
+  origin: true,
   credentials: true,
 }));
 app.use(express.json());
@@ -90,13 +90,12 @@ app.post('/api/admin/login', (req, res) => {
   }
   
   const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET!, { expiresIn: '1d' });
-  
-  res.cookie('admin_token', token, {
-    httpOnly: true,
-    secure: false, // Lokal nga testing ra ni
-    sameSite: 'lax',
-    maxAge: 86400000,
-  });
+res.cookie('admin_token', token, {
+  httpOnly: true,
+  secure: true, // <-- REQUIRED FOR HTTPS (Vercel/Render)
+  sameSite: 'none', // <-- REQUIRED FOR CROSS-DOMAIN (Vercel + Render)
+  maxAge: 86400000,
+});
   
   res.json({ success: true });
 });
