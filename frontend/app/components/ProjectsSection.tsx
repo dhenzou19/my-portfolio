@@ -1,9 +1,16 @@
 import { ArrowUpRight, Layers, Terminal } from 'lucide-react';
 
 async function getProjects() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`);
-  if (!res.ok) throw new Error('Failed to fetch projects');
-  return res.json();
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch projects:", error);
+    return []; // Return empty array so the page doesn't crash
+  }
 }
 
 export default async function ProjectsSection() {
