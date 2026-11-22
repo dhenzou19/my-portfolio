@@ -1,4 +1,5 @@
 // frontend/app/page.tsx
+export const maxDuration = 60; // Allows the page to wait up to 60 seconds for Render to wake up
 import { Suspense } from 'react';
 import Image from 'next/image';
 import { User, MapPin, Mail } from 'lucide-react';
@@ -6,6 +7,7 @@ import ContactForm from './components/ContactForm';
 import ScrollButtons from './components/ScrollButtons';
 import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
+
 
 export default function Home() {
   return (
