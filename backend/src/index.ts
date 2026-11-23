@@ -13,7 +13,7 @@ import pg from 'pg';
 import { verifyAdmin } from './adminAuth.js'; // <-- SAKTO NA NI
 
 const app = express();
-const port = 5000;
+const port = 5001;
 
 // Database setup
 const pool = new pg.Pool({

@@ -23,7 +23,7 @@ export default function ScrollButtons() {
         Contact Me
       </button>
       <a 
-        href="/resume.pdf" target="_blank" 
+        href="/dtnCV.pdf" target="_blank" 
         className="w-full sm:w-auto whitespace-nowrap bg-transparent border border-neutral-700 text-white px-8 py-3 rounded-full font-medium hover:bg-neutral-800 transition flex items-center justify-center gap-2"
       >
         <Download size={18} /> Download CV
