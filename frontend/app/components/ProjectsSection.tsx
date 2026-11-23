@@ -1,24 +1,10 @@
 import { ArrowUpRight, Layers, Terminal } from 'lucide-react';
+import { projects } from '../../data'; // Import local data
 
-async function getProjects() {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
-      cache: 'no-store',
-    });
-    if (!res.ok) return [];
-    return res.json();
-  } catch (error) {
-    console.error("Failed to fetch projects:", error);
-    return []; // Return empty array so the page doesn't crash
-  }
-}
-
-export default async function ProjectsSection() {
-  const projects = await getProjects();
-
+export default function ProjectsSection() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {projects.map((project: any) => (
+      {projects.map((project) => (
         <div key={project.id} className="group relative bg-neutral-900/50 border border-neutral-800 rounded-3xl p-8 hover:bg-neutral-800/50 transition-all duration-300 hover:-translate-y-1">
           <div className="flex justify-between items-start mb-4">
             <div className="p-3 bg-neutral-800 rounded-2xl text-rose-500 group-hover:scale-110 transition-transform">

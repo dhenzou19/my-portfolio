@@ -6,8 +6,7 @@ import { Send } from 'lucide-react';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,24 +15,12 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
-    setErrorMessage('');
-
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Something went wrong');
-
+    
+    // Simulate a network request for 1 second
+    setTimeout(() => {
       setStatus('success');
       setFormData({ name: '', email: '', message: '' }); 
-    } catch (error: any) {
-      setStatus('error');
-      setErrorMessage(error.message);
-    }
+    }, 1000);
   };
 
   return (
@@ -41,12 +28,6 @@ export default function ContactForm() {
       {status === 'success' && (
         <div className="bg-green-500/10 border border-green-500/20 text-green-400 p-4 rounded-xl mb-8 text-center flex items-center justify-center gap-2">
           <span className="text-xl">✅</span> Message sent! I'll get back to you soon.
-        </div>
-      )}
-
-      {status === 'error' && (
-        <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-xl mb-8 text-center">
-          ❌ {errorMessage}
         </div>
       )}
 
@@ -73,7 +54,7 @@ export default function ContactForm() {
               onChange={handleChange}
               required
               className="w-full bg-neutral-900/50 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all placeholder:text-neutral-600"
-              placeholder="Your email adress"
+              placeholder="Your email address"
             />
           </div>
         </div>
